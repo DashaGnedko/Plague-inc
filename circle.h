@@ -24,4 +24,5 @@ public:
 
 };
 
-#endif // POINT_H
+#endif // CIRCLE_H
+

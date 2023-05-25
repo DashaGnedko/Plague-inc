@@ -28,8 +28,13 @@ public:
     //void addPlane(Plane*);
     void setInfected(bool);
 
+    bool getFlyingPlane();
+    void setFlyingPlane(bool change);
+
     void checkForInfection(const std::vector<Circle*>&);
     void update(int);
+
+//    QPointF getCenter();
 
     Airport* askForPlane(const std::vector<Airport*>&);
 
@@ -44,6 +49,8 @@ private:
     Picture* picture = nullptr;
     Picture* airport = nullptr;
     Picture* airportInfected = nullptr;
+    int nextPlane = 0;
+    bool isFlyingPlane = false;
     //std::vector<Plane*> planes;
 };
 

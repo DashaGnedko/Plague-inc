@@ -20,6 +20,10 @@ Country* Continent::getIndex(int index) {
     return countries[index];
 }
 
+std::vector<Country*> Continent::getCountries() {
+    return countries;
+}
+
 Rebuild Continent::update(int miliseconds) {
     timer += miliseconds;
     Rebuild result;

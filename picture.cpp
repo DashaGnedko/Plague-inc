@@ -1,13 +1,21 @@
 #include "picture.h"
 
-Picture::Picture(const QString& fileName_, const QPointF& position_, int width_, int height_) {
+#include <QDebug>
+
+// Rotation
+Picture::Picture(const QString& fileName_, const QPointF& position_, int width_, int height_, double angle) {
     fileName = fileName_;
     position = position_;
     width = width_;
     height = height_;
     pixmap.load(fileName);
     pixmap = pixmap.scaled(width, height);
-    pixmapItem = new QGraphicsPixmapItem(pixmap);
+    pixmapItem = new CustomItem(pixmap);
+    pixmapItem->setTransformOriginPoint(width / 2, height / 2);
+    if (angle != 0) {
+        qDebug() << "???????????????? " << angle;
+    }
+    pixmapItem->setRotation(angle);
     pixmapItem->setPos(position);
     path = pixmapItem->shape();
 }
@@ -20,7 +28,7 @@ Picture::Picture(Picture* picture) {
     pixmap.load(fileName);
     pixmap = pixmap.scaled(width, height);
     //bitmap = pixmap.mask();
-    pixmapItem = new QGraphicsPixmapItem(pixmap);
+    pixmapItem = new CustomItem(pixmap);
     pixmapItem->setPos(position);
     path = pixmapItem->shape();
 }
@@ -36,7 +44,7 @@ Picture::Picture(const Picture& picture) {
     height = picture.height;
     pixmap = picture.pixmap;
     //bitmap = picture.bitmap;
-    pixmapItem = new QGraphicsPixmapItem(pixmap);
+    pixmapItem = new CustomItem(pixmap);
     path = pixmapItem->shape();
 }
 
@@ -50,7 +58,7 @@ Picture& Picture::operator=(const Picture& picture) {
     height = picture.height;
     pixmap = picture.pixmap;
     //bitmap = picture.bitmap;
-    pixmapItem = new QGraphicsPixmapItem(pixmap);
+    pixmapItem = new CustomItem(pixmap);
     path = pixmapItem->shape();
     return *this;
 }
@@ -75,13 +83,19 @@ QPixmap* Picture::getPixmap() {
     return &pixmap;
 }
 
-QGraphicsPixmapItem* Picture::getItem() {
+CustomItem* Picture::getItem() {
     return pixmapItem;
 }
 
 void Picture::setPixmap(const QPixmap& pixmap_) {
     pixmap = pixmap_;
     pixmapItem->setPixmap(pixmap_);
+}
+
+// Add color to CustomItem
+void Picture::changePixmap(const QColor& color) {
+    pixmapItem->setRed(true);
+    pixmapItem->update();
 }
 
 void Picture::setPixmapItemPosition(const QPointF& point) {
@@ -91,6 +105,10 @@ void Picture::setPixmapItemPosition(const QPointF& point) {
 
 void Picture::setZValue(double value) {
     pixmapItem->setZValue(value);
+}
+
+void Picture::setRotation(double degree) {
+    pixmapItem->setRotation(degree);
 }
 
 bool Picture::isOnPicture(QPointF point) {

@@ -2,6 +2,8 @@
 
 #include <QDebug>
 
+std::mt19937 randomGen(std::time(0));
+
 Airport::Airport(const QPointF& position_, const QString& fileName_, const QString& fileNameInfected_, int width_, int height_) {
     timer = 0;
     //localPosition = localPosition_;
@@ -11,6 +13,8 @@ Airport::Airport(const QPointF& position_, const QString& fileName_, const QStri
     picture = new Picture(fileName_, position, width_, height_);
     airport = new Picture(fileName_, position, width_, height_);
     airportInfected = new Picture(fileNameInfected_, position, width_, height_);
+    nextPlane = (3 + randomGen() % 10) * 1000 + randomGen() % 1000;
+    isFlyingPlane = false;
 }
 
 Airport::~Airport() {
@@ -30,6 +34,8 @@ Airport::Airport(const Airport& newAirport) {
     picture = new Picture(newAirport.picture);
     airport = new Picture(newAirport.airport);
     airportInfected = new Picture(newAirport.airportInfected);
+    nextPlane = newAirport.nextPlane;
+    isFlyingPlane = newAirport.isFlyingPlane;
 }
 
 Airport& Airport::operator=(const Airport& newAirport) {
@@ -43,6 +49,8 @@ Airport& Airport::operator=(const Airport& newAirport) {
     picture = new Picture(newAirport.picture);
     airport = new Picture(newAirport.airport);
     airportInfected = new Picture(newAirport.airportInfected);
+    nextPlane = newAirport.nextPlane;
+    isFlyingPlane = newAirport.isFlyingPlane;
     return *this;
 }
 
@@ -73,8 +81,20 @@ Picture* Airport::getPicture() const {
     return picture;
 }
 
+bool Airport::getFlyingPlane() {
+    return isFlyingPlane;
+}
+
+//QPointF Airport::getCenter() {
+//    return QPointF(position.x() + picture->getWidth() / 2.0, position.y() + picture->getHeight() / 2.0);
+//}
+
 void Airport::setClosed(bool closed_) {
     isClosed = closed_;
+}
+
+void Airport::setFlyingPlane(bool change) {
+    isFlyingPlane = change;
 }
 
 //void Airport::addPlane(Plane* plane) {
@@ -94,6 +114,9 @@ void Airport::setInfected(bool infection) {
 }
 
 void Airport::checkForInfection(const std::vector<Circle*>& infectedZone) {
+    if (isInfected) {
+        return;
+    }
     int numberOfCircles = 0;
     double minDistance = 1000000000;
     QPointF position;
@@ -125,26 +148,39 @@ void Airport::checkForInfection(const std::vector<Circle*>& infectedZone) {
 
 void Airport::update(int miliseconds) {
     timer += miliseconds;
-//    for (Plane* plane: planes) {
-//        plane->update(miliseconds);
-//    }
+
 }
 
 Airport* Airport::askForPlane(const std::vector<Airport*>& airports) {
-    std::mt19937 rnd(235345);
-    if (timer < 3000) {
+
+    if (isFlyingPlane) {
         return nullptr;
     }
+
+    if (timer < nextPlane) {
+        return nullptr;
+    }
+
+    nextPlane = (3 + randomGen() % 10) * 1000 + randomGen() % 1000;
+
     timer = 0;
     int size = static_cast<int>(airports.size());
     if (size < 2) {
         return nullptr;
     }
-    int index = rnd() % size;
-    while (airports[index] == this) {
-        index = rnd() % size;
+    int index = randomGen() % size;
+    for (int it = 0; it < 20; it++)
+    {
+        if (airports[index] == this || airports[index]->isFlyingPlane) { // TODO ?????????????????
+            index = randomGen() % size;
+        }
     }
-    qDebug() << index;
+
+    if (airports[index] == this || airports[index]->isFlyingPlane) { // TODO ?????????????????
+        return nullptr;
+    }
+
+    //qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " << timer;
     return airports[index];
 }
 

@@ -5,6 +5,8 @@
 
 #include "continent.h"
 #include "plane.h"
+#include "infobar.h"
+#include "progress.h"
 
 class Controller {
 public:
@@ -16,10 +18,14 @@ public:
     void addPlane(Plane*);
     Rebuild update(int);
     std::vector<Plane*> getPlanes();
+    InfoBar* getInfobar();
+    Progress* getProgress();
 
 private:
     std::vector<Continent*> continents;
     std::vector<Plane*> planes;
+    InfoBar* infobar = nullptr;
+    Progress* progress = nullptr;
 };
 
 #endif // CONTROLLER_H

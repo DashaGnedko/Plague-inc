@@ -8,9 +8,11 @@
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
 
+#include "customitem.h"
+
 class Picture {
 public:
-    Picture(const QString&, const QPointF&, int, int);
+    Picture(const QString&, const QPointF&, int, int, double angle = 0);
     Picture(Picture*);
     ~Picture();
     Picture(const Picture&);
@@ -21,10 +23,12 @@ public:
     int getWidth();
     int getHeight();
     QPixmap* getPixmap();
-    QGraphicsPixmapItem* getItem();
+    CustomItem* getItem();
     void setPixmap(const QPixmap&);
+    void changePixmap(const QColor&);
     void setPixmapItemPosition(const QPointF&);
     void setZValue(double);
+    void setRotation(double);
     bool isOnPicture(QPointF);
     bool isOnPicture(double, double);
 
@@ -35,7 +39,7 @@ private:
     int height;
     QPixmap pixmap;
     //QBitmap bitmap;
-    QGraphicsPixmapItem* pixmapItem = nullptr;
+    CustomItem* pixmapItem = nullptr;
     QPainterPath path;
 };
 

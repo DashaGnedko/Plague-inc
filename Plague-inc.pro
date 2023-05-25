@@ -13,27 +13,47 @@ SOURCES += \
     circle.cpp \
     continent.cpp \
     controller.cpp \
+    controllermenu.cpp \
     country.cpp \
-    item.cpp \
+    customitem.cpp \
+    disease.cpp \
+    infobar.cpp \
     main.cpp \
     mainwindow.cpp \
+    menubar.cpp \
+    myrectangle.cpp \
+    mytext.cpp \
     picture.cpp \
+    plague.cpp \
     plane.cpp \
+    progress.cpp \
     rebuild.cpp \
-    view.cpp
+    update.cpp \
+    view.cpp \
+    viewmenu.cpp
 
 HEADERS += \
     airport.h \
     circle.h \
     continent.h \
     controller.h \
+    controllermenu.h \
     country.h \
-    item.h \
+    customitem.h \
+    disease.h \
+    infobar.h \
     mainwindow.h \
+    menubar.h \
+    myrectangle.h \
+    mytext.h \
     picture.h \
+    plague.h \
     plane.h \
+    progress.h \
     rebuild.h \
-    view.h
+    update.h \
+    view.h \
+    viewmenu.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

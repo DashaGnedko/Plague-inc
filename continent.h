@@ -14,6 +14,7 @@ public:
     Country* operator[](int);
     Country* getIndex(int);
     Rebuild update(int miliseconds);
+    std::vector<Country*> getCountries();
 
 private:
     int timer = 0;

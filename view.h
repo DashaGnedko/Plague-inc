@@ -17,6 +17,9 @@
 class View : public QGraphicsScene {
     Q_OBJECT;
 
+signals:
+    void openMenu();
+
 public:
     View(Controller*, QWidget *parent = nullptr);
     void mousePressEvent(QGraphicsSceneMouseEvent*);

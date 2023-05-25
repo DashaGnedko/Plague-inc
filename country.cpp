@@ -87,11 +87,13 @@ void Country::addAirport(Airport* airport) {
 
 // in local
 void Country::startInfected(const QPointF& point) {
-    if (infectionPosition == std::nullopt) {
-        infectionPosition = point;
+    if (infectionPosition != std::nullopt) {
+        return;
     }
-
+    infectionPosition = point;
     infectedZone.push_back(new Circle(point, picture->getPosition()));
+
+    picture->changePixmap(QColor(200, 0, 0, 40));
     qDebug() << "start infected" << " " << infectionPosition.value();
 }
 
@@ -110,10 +112,6 @@ Rebuild Country::update(int miliseconds) {
         if (airport->getInfection()) {
             startInfected(airport->getLocalPosition(getPicture()->getPosition()));
         }
-//        Airport* next = airport->askForPlane(airports);
-//        if (next != nullptr) {
-//            result.addPlane.push_back(new Plane(airport, next, "D:/Code QT/Plague-inc/plane.png", 25, 25));
-//        }
     }
 
     if (infectionPosition == std::nullopt) {

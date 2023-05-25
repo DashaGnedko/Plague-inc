@@ -5,6 +5,7 @@
 
 #include "picture.h"
 #include "airport.h"
+#include <cmath>
 
 class Plane {
 public:
