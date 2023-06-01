@@ -25,10 +25,12 @@ public:
     Plague* getPlague();
     void setCurrentCountry(Country*);
     MyText* getCureProgress();
+    MyRectangle* getExitButton();
 
     void recalculateDna();
     void updateSelection(QGraphicsItem*);
     void recalculateMenuBar();
+    int checkCurrentState();
 
     void readFromFile(const QString&, Continent*);
 
@@ -40,6 +42,7 @@ private:
     MyText* cureProgress = nullptr;
     Plague* plague = nullptr;
     Country* currentCountry = nullptr;
+    MyRectangle* exitButton = nullptr;
 };
 
 #endif // CONTROLLER_H

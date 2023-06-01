@@ -113,7 +113,6 @@ void Country::generateInfection(QPointF point) {
             Circle* circle = infectedZone[i];
             double deltaX = circle->radius + 1 + rnd() % 10;
             double deltaY = circle->radius + 1 + rnd() % 10;
-            //bool isOnPicture = false;
 
             for (int dx = -1; dx < 2; dx = (dx == -1 ? 1 : dx + 1)) {
                 for (int dy = -1; dy < 2; dy = (dy == -1 ? 1 : dy + 1)) {
@@ -122,9 +121,6 @@ void Country::generateInfection(QPointF point) {
                         continue;
                     }
                     if (picture->isOnPicture(position)) {
-                        //isOnPicture = true;
-                        //deltaX *= dx;
-                        //deltaY *= dy;
                         Circle* newCircle = new Circle(Circle(circle->localPosition.x() + deltaX * dx, circle->localPosition.y() + deltaY * dy, picture->getPosition()));
 
                         bool isNear = false;
@@ -154,6 +150,7 @@ void Country::startInfected(const QPointF& point) {
     infectionPosition = point;
     infectedZone.push_back(new Circle(point, picture->getPosition()));
     lastVisited.push_back(infectedZone.back());
+    infected++;
 
     generateInfection(point);
 
@@ -164,7 +161,6 @@ void Country::startInfected(const QPointF& point) {
     plague->changeDna(addDna);
 
     picture->changePixmap(QColor(200, 0, 0, 40));
-    //qDebug() << "start infected" << " " << infectionPosition.value();
 }
 
 Airport* Country::checkAirport() {
@@ -201,9 +197,6 @@ void Country::recalculatePopulation(int infectivity, int severity, int lethality
     infected -= changeInf;
     infected += changePop;
     population -= changePop;
-//    if (infected == 0) {
-//        endInfection();
-//    }
 }
 
 Rebuild Country::update(int miliseconds) {

@@ -24,9 +24,9 @@ public:
 
 private:
     QString name;
-    int infectivity = 0; //
-    int severity = 0; //
-    int lethality = 0; //
+    int infectivity = 0;
+    int severity = 0;
+    int lethality = 0;
     int dna;
     double cure;
 };

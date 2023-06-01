@@ -12,6 +12,7 @@
 #include "controller.h"
 #include "rebuild.h"
 #include "viewmenu.h"
+#include "mywidget.h"
 
 class MainWindow : public QMainWindow
 {
@@ -38,5 +39,7 @@ private:
     Controller* controller = nullptr;
     ControllerMenu* controllerMenu = nullptr;
     QTimer* timer = nullptr;
+    MyWidget* result = nullptr;
+    int state = 0;
 };
 #endif // MAINWINDOW_H

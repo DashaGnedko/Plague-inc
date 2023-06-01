@@ -8,7 +8,7 @@
 std::mt19937 randomGeneration(std::time(0));
 
 Controller::Controller() {
-    plague = new Plague("Vova");
+    plague = new Plague("Virus");
 
     Continent* southAmerica = new Continent("South America");
     readFromFile(":/json/south-america.json", southAmerica);
@@ -23,57 +23,22 @@ Controller::Controller() {
 
     southAmerica->getIndex(0)->startInfected(QPointF(100, 100));
 
-//    Airport* airport = new Airport(QPointF(450, 350), "D:/Code QT/Plague-inc/airport.png", "D:/Code QT/Plague-inc/airport-infected.png", 30, 30);
-//    airport->getPicture()->setZValue(1.0);
-//    jeju->addAirport(airport);
-//    jeju->startInfected(QPointF(74, 78));
-
-//    Airport* airportIsland = new Airport(QPointF(120, 120), "D:/Code QT/Plague-inc/airport.png", "D:/Code QT/Plague-inc/airport-infected.png", 30, 30);
-//    airportIsland->getPicture()->setZValue(1.0);
-//    island->addAirport(airportIsland);
-
-//    Airport* airportIsland1 = new Airport(QPointF(1260, 307), "D:/Code QT/Plague-inc/airport.png", "D:/Code QT/Plague-inc/airport-infected.png", 30, 30);
-//    airportIsland1->getPicture()->setZValue(1.0);
-//    island1->addAirport(airportIsland1);
-
-//    Airport* airportIsland2 = new Airport(QPointF(1098, 306), "D:/Code QT/Plague-inc/airport.png", "D:/Code QT/Plague-inc/airport-infected.png", 30, 30);
-//    airportIsland2->getPicture()->setZValue(1.0);
-//    island1->addAirport(airportIsland2);
-
-//    Airport* airportIsland3 = new Airport(QPointF(1328, 728), "D:/Code QT/Plague-inc/airport.png", "D:/Code QT/Plague-inc/airport-infected.png", 30, 30);
-//    airportIsland3->getPicture()->setZValue(1.0);
-//    island2->addAirport(airportIsland3);
-
-//    Airport* airportIsland4 = new Airport(QPointF(1792, 433), "D:/Code QT/Plague-inc/airport.png", "D:/Code QT/Plague-inc/airport-infected.png", 30, 30);
-//    airportIsland4->getPicture()->setZValue(1.0);
-//    island3->addAirport(airportIsland4);
-
-//    Plane* plane = new Plane(airportIsland, airport, "D:/Code QT/Plague-inc/plane.png", 25, 25);
-//    plane->getPicture()->setZValue(0.5);
-//    //plane->setInfected(true); // !!!
-//    addPlane(plane);
-
-    //qDebug() << plane->getPicture()->getPosition() << " " << airport->getPicture()->getPosition();
-    //exit(0);
-
-
-    // -----------------------------------------------------------
-
     infobar = new InfoBar(new MyText("World", QPointF(745, 912)),
                           new MyText(("0"), QPointF(780, 990)),
                           new MyText(("0"), QPointF(987, 990)),
-                          new Picture("D:/Code QT/Plague-inc/world_icon.png", QPointF(733, 955), 100, 100),
+                          new Picture(":/icons/world_icon.png", QPointF(733, 955), 100, 100),
                           new MyRectangle(875, 1031, 1200, 1050, QColor(0, 0, 255), QBrush(QColor(0, 0, 255))),
                           new MyRectangle(875, 1031, 900, 1050, QColor(142, 33, 43), QBrush(QColor(76, 9, 16))));
 
 
     progress = new Progress(new MyText(QString::number(plague->getDna()), QPointF(66, 1033)),
-                            new Picture("D:/Code QT/Plague-inc/menu.png", QPointF(197, 985), INT_MAX, INT_MAX),
+                            new Picture(":/icons/menu.png", QPointF(197, 985), INT_MAX, INT_MAX),
                             new MyRectangle(0, 1000, 250, 1072, QColor(14, 33, 40), QBrush(QColor(14, 33, 40, 200)))
                             );
 
     cureProgress = new MyText(QString::number(plague->getCure()) + "%", QPointF(1695, 1034));
 
+    exitButton = new MyRectangle(1869, 20, 1901, 52, QColor(255, 255, 255), QBrush(QColor(255, 255, 255, 0)));
 }
 
 void Controller::readFromFile(const QString& file, Continent* continent) {
@@ -88,7 +53,7 @@ void Controller::readFromFile(const QString& file, Continent* continent) {
                                       QPointF(country["x"].toInt(), country["y"].toInt()),
                                       country["population"].toInt(),
                                       country["dna"].toInt(),
-                                      1000,
+                                      2000,
                                       country["file"].toString(), INT_MAX, INT_MAX);
         if (country.contains("airports")) {
             QJsonValue value = country["airports"];
@@ -123,7 +88,6 @@ void Controller::addContinent(Continent* continent) {
 }
 
 void Controller::addPlane(Plane* plane) {
-    //qDebug() << "!!! " << plane->getStart() << " " << plane->getFinish();
     planes.push_back(plane);
 }
 
@@ -153,6 +117,10 @@ void Controller::setCurrentCountry(Country* item) {
 
 MyText* Controller::getCureProgress() {
     return cureProgress;
+}
+
+MyRectangle* Controller::getExitButton() {
+    return exitButton;
 }
 
 void Controller::recalculateMenuBar() {
@@ -195,6 +163,28 @@ void Controller::updateSelection(QGraphicsItem* item) {
         }
     }
     recalculateMenuBar();
+}
+
+int Controller::checkCurrentState() {
+    int infection = 0;
+    int population = 0;
+    for (Continent* continent: continents) {
+        for (int i = 0; i < continent->size(); i++) {
+            Country* country = continent->getIndex(i);
+            infection += country->getInfected();
+            population += country->getPopulation();
+        }
+    }
+    if (infection == 0 && population > 0) {
+        return 1;
+    }
+    if (plague->getCure() == 100) {
+        return 1;
+    }
+    if (infection == 0 && population == 0) {
+        return 2;
+    }
+    return 0;
 }
 
 Rebuild Controller::update(int miliseconds) {
@@ -249,7 +239,6 @@ Rebuild Controller::update(int miliseconds) {
     }
 
     double cure =  plague->getDoubleCure();
-    //qDebug() << cure << " " << plague->getLethality() / 500.0;
     cure += plague->getLethality() / 10000.0;
     cure += plague->getSeverity() / 100000.0;
     cure += plague->getInfectivity() / 100000.0;

@@ -5,7 +5,7 @@ Plague::Plague(const QString& name_) {
     infectivity = 0;
     severity = 0;
     lethality = 0;
-    dna = 10; // !!!!!!!!!!!!!!!!!!
+    dna = 10;
     cure = 0;
 }
 

@@ -46,24 +46,12 @@ void DiseaseBar::setDisease(const QString& name_, const QString& description_, i
     picture->setPixmap(*picture_->getPixmap());
     cost->setText("\\\\ " + QString::number(cost_) + " DNA Points");
     changeButton(isBought);
-//    if (isBought) {
-//        button->setPixmap(*devolve->getPixmap());
-//    } else {
-//        button->setPixmap(*evolve->getPixmap());
-//    }
-    //picture->setPixmapItemPosition(position);
 }
 
-//int times = 0;
-
 void DiseaseBar::changeButton(bool isBought) {
-    //qDebug() << isBought;
-    //times++;
     if (isBought) {
-        //button = devolve;
         button->setPixmap(*devolve->getPixmap());
     } else {
-        //button = evolve;
         button->setPixmap(*evolve->getPixmap());
     }
 }

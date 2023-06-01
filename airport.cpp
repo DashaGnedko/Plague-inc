@@ -6,7 +6,6 @@ std::mt19937 randomGen(std::time(0));
 
 Airport::Airport(const QPointF& position_, const QString& fileName_, const QString& fileNameInfected_, int width_, int height_) {
     timer = 0;
-    //localPosition = localPosition_;
     position = position_;
     isClosed = false;
     isInfected = false;
@@ -24,9 +23,6 @@ Airport::~Airport() {
     delete picture;
     delete airport;
     delete airportInfected;
-//    for (Plane* plane: planes) {
-//        delete plane;
-//    }
 }
 
 Airport::Airport(const Airport& newAirport) {
@@ -57,14 +53,6 @@ Airport& Airport::operator=(const Airport& newAirport) {
     return *this;
 }
 
-//int Airport::size() {
-//    return static_cast<int>(planes.size());
-//}
-
-//Plane* Airport::operator[](int index) {
-//    return planes[index];
-//}
-
 QPointF Airport::getLocalPosition(const QPointF& point) {
     return QPointF(position.x() - point.x(), position.y() - point.y());
 }
@@ -76,9 +64,6 @@ QPointF Airport::getPosition() {
 bool Airport::getInfection() {
     return isInfected;
 }
-//std::vector<Plane*> Airport::getPlane() const {
-//    return planes;
-//}
 
 Picture* Airport::getPicture() const {
     return picture;
@@ -88,10 +73,6 @@ bool Airport::getFlyingPlane() {
     return isFlyingPlane;
 }
 
-//QPointF Airport::getCenter() {
-//    return QPointF(position.x() + picture->getWidth() / 2.0, position.y() + picture->getHeight() / 2.0);
-//}
-
 void Airport::setClosed(bool closed_) {
     isClosed = closed_;
 }
@@ -99,10 +80,6 @@ void Airport::setClosed(bool closed_) {
 void Airport::setFlyingPlane(bool change) {
     isFlyingPlane = change;
 }
-
-//void Airport::addPlane(Plane* plane) {
-//    planes.push_back(plane);
-//}
 
 void Airport::setInfected(bool infection) {
     if (isInfected == infection) {
@@ -153,38 +130,5 @@ void Airport::update(int miliseconds) {
     timer += miliseconds;
 
 }
-
-//Airport* Airport::askForPlane(const std::vector<Airport*>& airports) {
-
-//    if (isFlyingPlane) {
-//        return nullptr;
-//    }
-
-//    if (timer < nextPlane) {
-//        return nullptr;
-//    }
-
-//    nextPlane = (randomGen() % 2 == 1 ? (1 + randomGen() % 4) * 60000 : (3 + randomGen() % 10) * 1000) + + randomGen() % 1000;
-
-//    timer = 0;
-//    int size = static_cast<int>(airports.size());
-//    if (size < 2) {
-//        return nullptr;
-//    }
-//    int index = randomGen() % size;
-//    for (int it = 0; it < 20; it++)
-//    {
-//        if (airports[index] == this || airports[index]->isFlyingPlane) { // TODO ?????????????????
-//            index = randomGen() % size;
-//        }
-//    }
-
-//    if (airports[index] == this || airports[index]->isFlyingPlane) { // TODO ?????????????????
-//        return nullptr;
-//    }
-
-//    //qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " << timer;
-//    return airports[index];
-//}
 
 

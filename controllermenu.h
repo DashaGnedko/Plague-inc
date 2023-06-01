@@ -18,6 +18,7 @@ public:
     MenuBar* getLethality();
     Update* getUpdates();
     DiseaseBar* getDiseaseBar();
+    MyRectangle* getExitButton();
 
     void setPrediction(Disease*);
     void updateCurrentDisease();
@@ -34,6 +35,7 @@ private:
     MenuBar* lethality = nullptr;
     Update* update = nullptr;
     DiseaseBar* diseaseBar = nullptr;
+    MyRectangle* exitButton = nullptr;
 };
 
 #endif // CONTROLLERMENU_H

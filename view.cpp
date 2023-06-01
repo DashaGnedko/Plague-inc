@@ -5,7 +5,7 @@ View::View(Controller* controller_, QWidget *parent) : QGraphicsScene(parent) {
     view = new QGraphicsView(this);
     controller = controller_;
 
-    view->setStyleSheet("background-image: url(D:/Code QT/Plague-inc/main-background.png);"
+    view->setStyleSheet("background-image: url(:/icons/main-background.png);"
                           "background-repeat: no-repeat;"
                           "background-position: center;"
                           "background-size: cover;");
@@ -31,11 +31,6 @@ View::View(Controller* controller_, QWidget *parent) : QGraphicsScene(parent) {
         }
     }
 
-//    std::vector<Plane*> planes = controller->getPlanes();
-//    for (int i = 0; i < static_cast<int>(planes.size()); i++) {
-//        this->addItem(planes[i]->getPicture()->getItem());
-//    }
-
     InfoBar* infobar = controller->getInfobar();
 
     infobar->getName()->item = this->addText(infobar->getName()->text, QFont("Arial", 15, QFont::ExtraBold));
@@ -50,48 +45,24 @@ View::View(Controller* controller_, QWidget *parent) : QGraphicsScene(parent) {
     infobar->getDeadNumber()->addPosition();
     infobar->getDeadNumber()->item->setDefaultTextColor(Qt::white);
 
-//    infobar->getInfectedTitle()->item = this->addText(infobar->getInfectedTitle()->text);
-//    infobar->getInfectedTitle()->item->setDefaultTextColor(Qt::white);
-//    infobar->getInfectedTitle()->setPosition(infobar->getInfectedTitle()->position);
-
-//    infobar->getDeadTitle()->item = this->addText(infobar->getDeadTitle()->text);
-//    infobar->getDeadTitle()->item->setDefaultTextColor(Qt::white);
-//    infobar->getDeadTitle()->setPosition(infobar->getDeadTitle()->position);
-
-//    // ----
-
-//    this->addItem(infobar->getInfected()->getItem());
-//    this->addItem(infobar->getDead()->getItem());
-
-//    infobar->getProgressBar()->item = this->addRect(infobar->getProgressBar()->rect, infobar->getProgressBar()->pen, infobar->getProgressBar()->brush);
-//    infobar->getProgressBarInfected()->item = this->addRect(infobar->getProgressBarInfected()->rect, infobar->getProgressBarInfected()->pen, infobar->getProgressBarInfected()->brush);
-
-
-    // --------------------------------------
-
     Progress* progress = controller->getProgress();
-    //progress->getBack()->item = this->addRect(progress->getBack()->rect, progress->getBack()->pen, progress->getBack()->brush);
     this->addItem(progress->getButton()->getItem());
     progress->getProgress()->item = this->addText(progress->getProgress()->text, QFont("Arial", 15, QFont::ExtraBold));
     progress->getProgress()->addPosition();
     progress->getProgress()->item->setDefaultTextColor(Qt::white);
 
-    // --------------------------------------
-
-
     MyText* cureProgress = controller->getCureProgress();
     cureProgress->item = this->addText(cureProgress->text, QFont("Arial", 15, QFont::ExtraBold));
     cureProgress->addPosition();
     cureProgress->item->setDefaultTextColor(Qt::white);
+
+    MyRectangle* exitButton = controller->getExitButton();
+    exitButton->item = this->addRect(exitButton->rect, exitButton->pen, exitButton->brush);
 }
 
 QGraphicsView* View::getView() {
     return view;
 }
-
-//void View::resizeEvent(QResizeEvent* event) {
-
-//}
 
 void View::update(Rebuild& updates) {
     for (Circle* circle: updates.addCircle) {
@@ -108,33 +79,22 @@ void View::update(Rebuild& updates) {
         circle->item->clearFocus();
         circle->item->setAcceptedMouseButtons(Qt::NoButton);
     }
-    //qDebug() << updates.addPlane.size();
     for (Plane* plane: updates.addPlane) {
         this->addItem(plane->getPicture()->getItem());
     }
 }
 
 void View::mousePressEvent(QGraphicsSceneMouseEvent* event) {
-//exit(0);
-    if (event->button() == Qt::LeftButton)
-            {
-                QGraphicsItem* ptr = this->itemAt(event->scenePos(), QTransform());
-                if (ptr == controller->getProgress()->getButton()->getItem()) {
-                    emit openMenu();
-                    return;
-                }
-
-                controller->updateSelection(ptr);
-                view->update();
-                //qDebug() << "Позиция мыши:" << event->scenePos() << " " << !(ptr == nullptr);
-            }
-            else if (event->button() == Qt::RightButton)
-            {
+    if (event->button() == Qt::LeftButton) {
         QGraphicsItem* ptr = this->itemAt(event->scenePos(), QTransform());
-//                qDebug() << "Правая кнопка мыши нажата.";
-                qDebug() << "Позиция мыши:" << event->scenePos() << " " << !(ptr == nullptr);
-            }
-
-            //QGraphicsScene::mousePressEvent(event);
-
+        if (ptr == controller->getProgress()->getButton()->getItem()) {
+            emit openMenu();
+            return;
+        }
+        if (ptr == controller->getExitButton()->item) {
+            exit(0);
+        }
+        controller->updateSelection(ptr);
+        view->update();
+    }
 }

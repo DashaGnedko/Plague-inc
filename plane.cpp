@@ -17,20 +17,8 @@ Plane::Plane(Airport* start_, Airport* finish_, const QString& fileName, int wid
     double dx = finish.x() - start.x();
     double dy = finish.y() - start.y();
     double angle = atan2(dy, dx) + acos(-1) / 2;
-//    if (dx > 0) {
-//        angle = 360 - angle;
-//    }
-
-    //if (angle != 0) qDebug() << "!!!! " << angle << " ";
-
-
-    //exit(0);
-
-
 
     picture = new Picture(fileName, current, width, height, angle);
-    //picture->setRotation(275);
-    //picture->setRotation(360 - QLineF(0, 0, 0, -1).angleTo(QLineF(0, 0, deltaX, deltaY)));
 
     deltaX = finish.x() - start.x();
     deltaY = finish.y() - start.y();
@@ -41,13 +29,7 @@ Plane::Plane(Airport* start_, Airport* finish_, const QString& fileName, int wid
     deltaX /= maximum;
     deltaY /= maximum;
 
-    //picture = new Picture(fileName, current, width, height, 275);
     picture->setZValue(0.5);
-    //picture->setRotation(275);
-    //picture->setRotation(360 - QLineF(0, 0, 0, -1).angleTo(QLineF(0, 0, deltaX, deltaY)));
-    //qDebug() << deltaX << " " << deltaY << " " << QLineF(0, 0, deltaX, deltaY).angleTo(QLineF(0, 0, 0, -1));
-
-    //timerFromStart = 0;
 }
 
 Plane::~Plane() {
@@ -65,8 +47,6 @@ Plane::Plane(const Plane& plane) {
     deltaX = plane.deltaX;
     deltaY = plane.deltaY;
     picture = new Picture(plane.picture);
-
-    //timerFromStart = plane.timerFromStart;
 }
 
 Plane& Plane::operator=(const Plane& plane) {
@@ -83,8 +63,6 @@ Plane& Plane::operator=(const Plane& plane) {
     deltaX = plane.deltaX;
     deltaY = plane.deltaY;
     picture = new Picture(plane.picture);
-
-    //timerFromStart = plane.timerFromStart;
     return *this;
 }
 
@@ -120,13 +98,7 @@ bool Plane::between(double x, double y, double z) {
 }
 
 void Plane::update(int miliseconds) {
-    //qDebug() << current;
     timer += miliseconds;
-//    timerFromStart += miliseconds;
-//    if (timerFromStart < 15000) {
-//        timer = 0;
-//        return;
-//    }
     if (timer < 10) {
         return;
     }

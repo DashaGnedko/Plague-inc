@@ -25,19 +25,3 @@ void MyText::setPosition(const QPointF& position_) {
 void MyText::addPosition() {
     item->setPos(position);
 }
-
-//QString MyText::getText() {
-//    return text;
-//}
-
-//QGraphicsTextItem* MyText::getItem() {
-//    return item;
-//}
-
-//void MyText::setText(const QString& text_) {
-//    text = text_;
-//}
-
-//void MyText::setItem(QGraphicsTextItem* item_) {
-//    item = item_;
-//}

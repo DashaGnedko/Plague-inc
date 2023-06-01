@@ -3,8 +3,6 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
 
-    //resize(1000, 1000);
-
     showFullScreen();
 
     controller = new Controller();
@@ -26,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, &QTimer::timeout, this, &MainWindow::timeOut);
 
     connect(view, &View::openMenu, this, &MainWindow::openMenuWindow);
-
+    connect(viewMenu, &ViewMenu::closeMenu, this, &MainWindow::openWindow);
 }
 
 MainWindow::~MainWindow() {
@@ -34,6 +32,7 @@ MainWindow::~MainWindow() {
     delete view;
     delete timer;
     delete viewMenu;
+    delete result;
 }
 
 void MainWindow::openWindow() {
@@ -43,6 +42,11 @@ void MainWindow::openWindow() {
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event) {
+    if (state != 0) {
+        if (event->key() == Qt::Key_Escape) {
+            exit(0);
+        }
+    }
     if (event->key() == Qt::Key_Escape) {
         if (viewMenu->getView()->isEnabled()) {
             openWindow();
@@ -55,6 +59,25 @@ void MainWindow::keyPressEvent(QKeyEvent* event) {
 }
 
 void MainWindow::timeOut() {
+    state = controller->checkCurrentState();
+    qDebug() << state;
+    if (state == 1) {
+        viewMenu->getView()->setEnabled(false);
+        view->getView()->setEnabled(false);
+        result = new MyWidget(":/icons/defeat.png", this);
+        stack->addWidget(result);
+        stack->setCurrentWidget(result);
+        timer->stop();
+        return;
+    } else if (state == 2) {
+        viewMenu->getView()->setEnabled(false);
+        view->getView()->setEnabled(false);
+        result = new MyWidget(":/icons/victory.png", this);
+        stack->addWidget(result);
+        stack->setCurrentWidget(result);
+        timer->stop();
+        return;
+    }
     Rebuild updates = controller->update(1);
     view->update(updates);
 }
@@ -64,5 +87,5 @@ void MainWindow::openMenuWindow() {
     stack->setCurrentWidget(viewMenu->getView());
     viewMenu->getView()->setEnabled(true);
     controllerMenu->recalculateDna();
-    //qDebug() << "????? " << (stack->currentWidget() == view->getView());
 }
+

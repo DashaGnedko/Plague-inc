@@ -12,26 +12,11 @@ ViewMenu::ViewMenu(ControllerMenu* controller_, QWidget *parent) : QGraphicsScen
 
     this->setSceneRect(0, 0, parent->width() - 2, parent->height() - 2);
 
-    view->setStyleSheet("background-image: url(D:/Code QT/Plague-inc/background.png);"
+    view->setStyleSheet("background-image: url(:/icons/background.png);"
                           "background-repeat: no-repeat;"
                           "background-position: center;"
                           "background-size: cover;");
 
-//    Picture* background = new Picture("D:/Code QT/Plague-inc/dna-background-2.png", QPointF(70, 110), 1200, 700);
-//    this->addItem(background->getItem());
-
-//    Picture* backgroundBacteria = new Picture("D:/Code QT/Plague-inc/bacteria.png", QPointF(1324, 112), 500, 400);
-//    this->addItem(backgroundBacteria->getItem());
-
-//    Picture* backgroundHuman = new Picture("D:/Code QT/Plague-inc/human.png", QPointF(1324, 562), 500, 400);
-//    this->addItem(backgroundHuman->getItem());
-
-//    MyRectangle* toolBar = new MyRectangle(0, parent->height() - 60, parent->width() - 1, parent->height() - 1, QColor(34, 0, 1), QBrush(QColor(34, 0, 1)));
-//    toolBar->item = this->addRect(toolBar->rect, toolBar->pen, toolBar->brush);
-
-//    controller->getInfectivity()->getName()->item = this->addText(controller->getInfectivity()->getName()->text, QFont());
-    //controller->getInfectivity()->getName()->addPosition();
-    //controller->getInfectivity()->getName()->item->setDefaultTextColor(Qt::white);
     controller->getInfectivity()->getProgressBar()->item = this->addRect(controller->getInfectivity()->getProgressBar()->rect,
                                                                          controller->getInfectivity()->getProgressBar()->pen,
                                                                          controller->getInfectivity()->getProgressBar()->brush);
@@ -39,9 +24,6 @@ ViewMenu::ViewMenu(ControllerMenu* controller_, QWidget *parent) : QGraphicsScen
                                                                          controller->getInfectivity()->getProgressBarShow()->pen,
                                                                          controller->getInfectivity()->getProgressBarShow()->brush);
 
-//    controller->getSeverity()->getName()->item = this->addText(controller->getSeverity()->getName()->text, QFont());
-//    controller->getSeverity()->getName()->addPosition();
-//    controller->getSeverity()->getName()->item->setDefaultTextColor(Qt::white);
     controller->getSeverity()->getProgressBar()->item = this->addRect(controller->getSeverity()->getProgressBar()->rect,
                                                                       controller->getSeverity()->getProgressBar()->pen,
                                                                       controller->getSeverity()->getProgressBar()->brush);
@@ -49,9 +31,6 @@ ViewMenu::ViewMenu(ControllerMenu* controller_, QWidget *parent) : QGraphicsScen
                                                                       controller->getSeverity()->getProgressBarShow()->pen,
                                                                       controller->getSeverity()->getProgressBarShow()->brush);
 
-//    controller->getLethality()->getName()->item = this->addText(controller->getLethality()->getName()->text, QFont());
-//    controller->getLethality()->getName()->addPosition();
-//    controller->getLethality()->getName()->item->setDefaultTextColor(Qt::white);
     controller->getLethality()->getProgressBar()->item = this->addRect(controller->getLethality()->getProgressBar()->rect,
                                                                        controller->getLethality()->getProgressBar()->pen,
                                                                        controller->getLethality()->getProgressBar()->brush);
@@ -94,6 +73,9 @@ ViewMenu::ViewMenu(ControllerMenu* controller_, QWidget *parent) : QGraphicsScen
     this->addItem(bar->getPicture()->getItem());
     this->addItem(bar->getButton()->getItem());
     this->setFocusItem(bar->getButton()->getItem());
+
+    MyRectangle* exitButton = controller->getExitButton();
+    exitButton->item = this->addRect(exitButton->rect, exitButton->pen, exitButton->brush);
 }
 
 QGraphicsView* ViewMenu::getView() {
@@ -105,8 +87,7 @@ ViewMenu::~ViewMenu() {
 }
 
 void ViewMenu::mousePressEvent(QGraphicsSceneMouseEvent* event) {
-    if (event->button() == Qt::LeftButton)
-    {
+    if (event->button() == Qt::LeftButton) {
         QGraphicsItem* ptr = this->itemAt(event->scenePos(), QTransform());
         if (ptr == controller->getDiseaseBar()->getButton()->getItem()) {
             controller->updateCurrentDisease();
@@ -115,16 +96,13 @@ void ViewMenu::mousePressEvent(QGraphicsSceneMouseEvent* event) {
         if (ptr == nullptr) {
             return;
         }
-        // if (ptr == button)
-        // if (ptr == esc)
+        if (ptr == controller->getExitButton()->item) {
+            emit closeMenu();
+            return;
+        }
         Disease* disease = controller->getUpdates()->updateSelection(ptr, controller->getDiseaseBar());
         if (disease != nullptr) {
             controller->setPrediction(disease);
         }
-
-    }
-    else if (event->button() == Qt::RightButton)
-    {
-        qDebug() << "Позиция мыши:" << event->scenePos() << " " << event->pos();
     }
 }

@@ -12,26 +12,22 @@ ControllerMenu::ControllerMenu(Controller* mainController_) {
     infectivity = new MenuBar(nullptr, 0, 98, QPointF(389, 1038), QPointF(753, 1061), QColor(179, 0, 120), QBrush(QColor(179, 0, 120)));
     severity = new MenuBar(nullptr, 0, 98, QPointF(963, 1038), QPointF(1326, 1061), QColor(255, 255, 69), QBrush(QColor(255, 255, 69)));
     lethality = new MenuBar(nullptr, 0, 98, QPointF(1534, 1038), QPointF(1898, 1061), QColor(124, 20, 198), QBrush(QColor(124, 20, 198)));
-    //severity = new MenuBar(new MyText("SEVERITY", QPointF(750, 1035)), new MyRectangle(850, 1035, 1070, 1065, QColor(242, 253, 77), QBrush(QColor(242, 253, 77, 40))));
-    //lethality = new MenuBar(new MyText("LETHALITY", QPointF(1150, 1035)), new MyRectangle(1250, 1035, 1470, 1065, QColor(124, 34, 91), QBrush(QColor(124, 34, 91, 40))));
 
     update = new Update();
     readFromFile(update);
 
     update->setCurrentDisease(update->getElement(0));
 
-
-    //updates.push_back(update);
-
-
     diseaseBar = new DiseaseBar(new MyText(update->getElement(0)->getName(), QPointF(20, 766)),
                                 new MyText("\\\\ " + update->getElement(0)->getDescription(), QPointF(207, 886)),
                                 new MyText("\\\\ " + QString::number(update->getElement(0)->getCost()) + " DNA Points", QPointF(1050, 890)),
                                 update->getElement(0)->getPicture(),
-                                new Picture("D:/Code QT/Plague-inc/devolve-button.png", QPointF(1050, 924)),
-                                new Picture("D:/Code QT/Plague-inc/evolve-button.png", QPointF(1050, 924)));
+                                new Picture(":/icons/devolve-button.png", QPointF(1050, 924)),
+                                new Picture(":/icons/evolve-button.png", QPointF(1050, 924)));
 
     update->getElement(0)->buy(mainController, diseaseBar, infectivity, severity, lethality);
+
+    exitButton = new MyRectangle(1869, 20, 1901, 52, QColor(255, 255, 255), QBrush(QColor(255, 255, 255, 0)));
 }
 
 ControllerMenu::~ControllerMenu() {
@@ -82,6 +78,10 @@ Update* ControllerMenu::getUpdates() {
 
 DiseaseBar* ControllerMenu::getDiseaseBar() {
     return diseaseBar;
+}
+
+MyRectangle* ControllerMenu::getExitButton() {
+    return exitButton;
 }
 
 void ControllerMenu::setPrediction(Disease* disease) {

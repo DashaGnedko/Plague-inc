@@ -24,6 +24,7 @@ SOURCES += \
     menubar.cpp \
     myrectangle.cpp \
     mytext.cpp \
+    mywidget.cpp \
     picture.cpp \
     plague.cpp \
     plane.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     menubar.h \
     myrectangle.h \
     mytext.h \
+    mywidget.h \
     picture.h \
     plague.h \
     plane.h \

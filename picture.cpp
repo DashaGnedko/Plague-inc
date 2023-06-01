@@ -12,11 +12,6 @@ Picture::Picture(const QString& fileName_, const QPointF& position_, int width_,
     height = (height_ == INT_MAX ? pixmap.height() : height_);
     pixmap = pixmap.scaled(width, height).transformed(QTransform().rotateRadians(angle));
     pixmapItem = new CustomItem(pixmap);
-//    pixmapItem->setTransformOriginPoint(width / 2, height / 2);
-////    if (angle != 0) {
-////        qDebug() << "???????????????? " << angle;
-////    }
-//    pixmapItem->setRotation(angle);
     pixmapItem->setPos(position);
     path = pixmapItem->shape();
 }
@@ -28,7 +23,6 @@ Picture::Picture(Picture* picture) {
     height = picture->height;
     pixmap.load(fileName);
     pixmap = pixmap.scaled(width, height);
-    //bitmap = pixmap.mask();
     pixmapItem = new CustomItem(pixmap);
     pixmapItem->setPos(position);
     path = pixmapItem->shape();
@@ -44,7 +38,6 @@ Picture::Picture(const Picture& picture) {
     width = picture.width;
     height = picture.height;
     pixmap = picture.pixmap;
-    //bitmap = picture.bitmap;
     pixmapItem = new CustomItem(pixmap);
     path = pixmapItem->shape();
 }
@@ -58,7 +51,6 @@ Picture& Picture::operator=(const Picture& picture) {
     width = picture.width;
     height = picture.height;
     pixmap = picture.pixmap;
-    //bitmap = picture.bitmap;
     pixmapItem = new CustomItem(pixmap);
     path = pixmapItem->shape();
     return *this;

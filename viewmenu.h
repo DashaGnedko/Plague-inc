@@ -17,6 +17,9 @@
 class ViewMenu : public QGraphicsScene {
     Q_OBJECT;
 
+signals:
+    void closeMenu();
+
 public:
     ViewMenu(ControllerMenu*, QWidget *parent = nullptr);
     ~ViewMenu();

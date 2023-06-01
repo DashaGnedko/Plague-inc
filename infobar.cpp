@@ -18,30 +18,6 @@ InfoBar::~InfoBar() {
     delete deadBar;
 }
 
-//InfoBar::InfoBar(const InfoBar& infoBar) {
-//    name = infoBar.name;
-//    back = new Picture(infoBar.back);
-//    infected = new Picture(infoBar.infected);
-//    dead = new Picture(infoBar.dead);
-//    backBar = new MyRectangle(*infoBar.backBar);
-//    progressBar = new MyRectangle(*infoBar.progressBar);
-//    progressBarInfected = new MyRectangle(*infoBar.progressBarInfected);
-//}
-
-//InfoBar InfoBar::operator[](const InfoBar& infoBar) {
-//    if (&infoBar == this) {
-//        return *this;
-//    }
-//    name = infoBar.name;
-//    back = new Picture(infoBar.back);
-//    infected = new Picture(infoBar.infected);
-//    dead = new Picture(infoBar.dead);
-//    backBar = new MyRectangle(*infoBar.backBar);
-//    progressBar = new MyRectangle(*infoBar.progressBar);
-//    progressBarInfected = new MyRectangle(*infoBar.progressBarInfected);
-//    return *this;
-//}
-
 MyText* InfoBar::getName() {
     return name;
 }
@@ -77,7 +53,3 @@ void InfoBar::setInfectedNumber(int number) {
 void InfoBar::setDeadNumber(int number) {
     deadNumber->setText(QString::number(number));
 }
-
-//void InfoBar::setWorld(Picture*);
-//void InfoBar::setInfectedBar(MyRectangle*);
-//void InfoBar::setdeadBar(MyRectangle*);

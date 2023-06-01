@@ -3,5 +3,14 @@
      <file>icons/plane.png</file>
      <file>icons/airport.png</file>
      <file>icons/airport-infected.png</file>
+     <file>icons/main-background.png</file>
+     <file>icons/menu.png</file>
+     <file>icons/plane.png</file>
+     <file>icons/world_icon.png</file>
+     <file>icons/devolve-button.png</file>
+     <file>icons/evolve-button.png</file>
+     <file>icons/background.png</file>
+     <file>icons/victory.png</file>
+     <file>icons/defeat.png</file>
  </qresource>
  </RCC>
