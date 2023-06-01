@@ -1,0 +1,133 @@
+[
+  {
+    "name" : "Brazil",
+    "x" : 493,
+    "y" : 593,
+    "population" : 214304560,
+    "dna": 5,
+    "file" : ":/countries/brazil.png",
+    "airports" : [
+        {
+           "x": 634,
+           "y": 694
+	  },
+        {
+           "x": 653,
+           "y": 730
+	  }
+    ]
+  },
+  {
+    "name" : "Columbia", 
+    "x" : 461,
+    "y" : 563,
+    "population" : 51525876,
+    "dna": 7,
+    "file" : ":/countries/columbia.png",
+    "airports" : [
+        {
+           "x": 489,
+           "y": 599
+	  }
+    ]
+  },
+  {
+    "name" : "Venezuela", 
+    "x" : 489,
+    "y" : 554,
+    "population" : 28257385,
+    "dna": 6,
+    "file" : ":/countries/venezuela.png", 
+    "airports" : [
+        {
+           "x": 528,
+           "y": 573
+	  }
+    ]
+  },
+  {
+    "name" : "Ecuador", 
+    "x" : 455,
+    "y" : 614,
+    "population" : 17898456,
+    "dna": 4,
+    "file" : ":/countries/ecuador.png",
+    "airports" : [
+        {
+           "x": 464,
+           "y": 620
+	  }
+    ]
+  },
+  {
+    "name" : "Paraguay", 
+    "x" : 550,
+    "y" : 720,
+    "population" : 6704576,
+    "dna": 3,
+    "file" : ":/countries/paraguay.png",
+    "airports" : [
+        {
+           "x": 576,
+           "y": 740
+	  }
+    ]
+  },
+  {
+    "name" : "Bolivia", 
+    "x" : 516,
+    "y" : 670,
+    "population" : 12087123,
+    "dna": 7,
+    "file" : ":/countries/bolivia.png",
+    "airports" : [
+        {
+           "x": 548,
+           "y": 693
+	  }
+    ]
+  },
+  {
+    "name" : "Peru", 
+    "x" : 456,
+    "y" : 620,
+    "population" : 33723123,
+    "dna": 8,
+    "file" : ":/countries/peru.png",
+    "airports" : [
+        {
+           "x": 496,
+           "y": 680
+	  }
+    ]
+  },
+  {
+    "name" : "Argentina", 
+    "x" : 493,
+    "y" : 728,
+    "dna": 5,
+    "population" : 45819452,
+    "file" : ":/countries/argentina.png",
+    "airports" : [
+        {
+           "x": 521,
+           "y": 888
+	  }
+    ]
+  }, 
+  {
+    "name" : "Chile", 
+    "x" : 485,
+    "y" : 710,
+    "population" : 19498273,
+    "dna": 2,
+    "file" : ":/countries/chile.png",
+    "airports" : [
+        {
+           "x": 487,
+           "y": 882
+	  }
+    ]
+  }
+]
+

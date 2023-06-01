@@ -11,17 +11,19 @@
 
 class MyRectangle {
 public:
-    MyRectangle(double, double, double, double, QPen, QBrush);
+    MyRectangle(double, double, double, double, QPen, QBrush, QGraphicsRectItem* item_ = nullptr);
     //~Rectangle();
     MyRectangle(const MyRectangle&);
     MyRectangle operator[](const MyRectangle&);
+
+    void change(double, double, double, double, QPen, QBrush);
 
     QRectF rect;
     QPointF begin;
     QPointF end;
     QPen pen;
     QBrush brush;
-    QGraphicsItem* item = nullptr;
+    QGraphicsRectItem* item = nullptr;
 };
 
 #endif // MYRECTANGLE_H

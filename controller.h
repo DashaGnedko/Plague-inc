@@ -7,6 +7,8 @@
 #include "plane.h"
 #include "infobar.h"
 #include "progress.h"
+#include "plague.h"
+#include <QFile>
 
 class Controller {
 public:
@@ -20,12 +22,24 @@ public:
     std::vector<Plane*> getPlanes();
     InfoBar* getInfobar();
     Progress* getProgress();
+    Plague* getPlague();
+    void setCurrentCountry(Country*);
+    MyText* getCureProgress();
+
+    void recalculateDna();
+    void updateSelection(QGraphicsItem*);
+    void recalculateMenuBar();
+
+    void readFromFile(const QString&, Continent*);
 
 private:
     std::vector<Continent*> continents;
     std::vector<Plane*> planes;
     InfoBar* infobar = nullptr;
     Progress* progress = nullptr;
+    MyText* cureProgress = nullptr;
+    Plague* plague = nullptr;
+    Country* currentCountry = nullptr;
 };
 
 #endif // CONTROLLER_H

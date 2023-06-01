@@ -17,6 +17,7 @@ SOURCES += \
     country.cpp \
     customitem.cpp \
     disease.cpp \
+    diseasebar.cpp \
     infobar.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     country.h \
     customitem.h \
     disease.h \
+    diseasebar.h \
     infobar.h \
     mainwindow.h \
     menubar.h \
@@ -59,3 +61,9 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    countries.qrc \
+    diseases.qrc \
+    icons.qrc \
+    json.qrc

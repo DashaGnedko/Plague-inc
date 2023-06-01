@@ -13,7 +13,10 @@ Airport::Airport(const QPointF& position_, const QString& fileName_, const QStri
     picture = new Picture(fileName_, position, width_, height_);
     airport = new Picture(fileName_, position, width_, height_);
     airportInfected = new Picture(fileNameInfected_, position, width_, height_);
-    nextPlane = (3 + randomGen() % 10) * 1000 + randomGen() % 1000;
+    picture->setZValue(1.0);
+    airport->setZValue(1.0);
+    airportInfected->setZValue(1.0);
+    nextPlane = (randomGen() % 2 == 1 ? (1 + randomGen() % 4) * 60000 : (3 + randomGen() % 10) * 1000) + randomGen() % 1000;
     isFlyingPlane = false;
 }
 
@@ -151,37 +154,37 @@ void Airport::update(int miliseconds) {
 
 }
 
-Airport* Airport::askForPlane(const std::vector<Airport*>& airports) {
+//Airport* Airport::askForPlane(const std::vector<Airport*>& airports) {
 
-    if (isFlyingPlane) {
-        return nullptr;
-    }
+//    if (isFlyingPlane) {
+//        return nullptr;
+//    }
 
-    if (timer < nextPlane) {
-        return nullptr;
-    }
+//    if (timer < nextPlane) {
+//        return nullptr;
+//    }
 
-    nextPlane = (3 + randomGen() % 10) * 1000 + randomGen() % 1000;
+//    nextPlane = (randomGen() % 2 == 1 ? (1 + randomGen() % 4) * 60000 : (3 + randomGen() % 10) * 1000) + + randomGen() % 1000;
 
-    timer = 0;
-    int size = static_cast<int>(airports.size());
-    if (size < 2) {
-        return nullptr;
-    }
-    int index = randomGen() % size;
-    for (int it = 0; it < 20; it++)
-    {
-        if (airports[index] == this || airports[index]->isFlyingPlane) { // TODO ?????????????????
-            index = randomGen() % size;
-        }
-    }
+//    timer = 0;
+//    int size = static_cast<int>(airports.size());
+//    if (size < 2) {
+//        return nullptr;
+//    }
+//    int index = randomGen() % size;
+//    for (int it = 0; it < 20; it++)
+//    {
+//        if (airports[index] == this || airports[index]->isFlyingPlane) { // TODO ?????????????????
+//            index = randomGen() % size;
+//        }
+//    }
 
-    if (airports[index] == this || airports[index]->isFlyingPlane) { // TODO ?????????????????
-        return nullptr;
-    }
+//    if (airports[index] == this || airports[index]->isFlyingPlane) { // TODO ?????????????????
+//        return nullptr;
+//    }
 
-    //qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " << timer;
-    return airports[index];
-}
+//    //qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " << timer;
+//    return airports[index];
+//}
 
 

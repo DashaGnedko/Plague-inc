@@ -1,0 +1,8 @@
+<!DOCTYPE RCC><RCC version="1.0">
+ <qresource>
+     <file>json/south-america.json</file>
+     <file>json/north-america.json</file>
+     <file>json/greenland.json</file>
+     <file>json/disease.json</file>
+ </qresource>
+ </RCC>

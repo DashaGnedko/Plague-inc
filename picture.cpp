@@ -1,21 +1,22 @@
 #include "picture.h"
 
 #include <QDebug>
+#include <cmath>
 
 // Rotation
 Picture::Picture(const QString& fileName_, const QPointF& position_, int width_, int height_, double angle) {
     fileName = fileName_;
     position = position_;
-    width = width_;
-    height = height_;
     pixmap.load(fileName);
-    pixmap = pixmap.scaled(width, height);
+    width = (width_ == INT_MAX ? pixmap.width() : width_);
+    height = (height_ == INT_MAX ? pixmap.height() : height_);
+    pixmap = pixmap.scaled(width, height).transformed(QTransform().rotateRadians(angle));
     pixmapItem = new CustomItem(pixmap);
-    pixmapItem->setTransformOriginPoint(width / 2, height / 2);
-    if (angle != 0) {
-        qDebug() << "???????????????? " << angle;
-    }
-    pixmapItem->setRotation(angle);
+//    pixmapItem->setTransformOriginPoint(width / 2, height / 2);
+////    if (angle != 0) {
+////        qDebug() << "???????????????? " << angle;
+////    }
+//    pixmapItem->setRotation(angle);
     pixmapItem->setPos(position);
     path = pixmapItem->shape();
 }
@@ -95,6 +96,11 @@ void Picture::setPixmap(const QPixmap& pixmap_) {
 // Add color to CustomItem
 void Picture::changePixmap(const QColor& color) {
     pixmapItem->setRed(true);
+    pixmapItem->update();
+}
+
+void Picture::setSelection(bool isSelected) {
+    pixmapItem->setSelection(isSelected);
     pixmapItem->update();
 }
 

@@ -1,0 +1,66 @@
+[
+  {
+    "name" : "Brazil",
+    "x" : 493,
+    "y" : 593,
+    "population" : 214304560,
+    "file" : ":/countries/brazil.png"
+  },
+  {
+    "name" : "Columbia", 
+    "x" : 461,
+    "y" : 563,
+    "population" : 51525876,
+    "file" : ":/countries/columbia.png"
+  },
+  {
+    "name" : "Venezuela", 
+    "x" : 489,
+    "y" : 554,
+    "population" : 28257385,
+    "file" : ":/countries/venezuela.png"
+  },
+  {
+    "name" : "Ecuador", 
+    "x" : 455,
+    "y" : 614,
+    "population" : 17898456,
+    "file" : ":/countries/ecuador.png"
+  },
+  {
+    "name" : "Paraguay", 
+    "x" : 550,
+    "y" : 720,
+    "population" : 6704576,
+    "file" : ":/countries/paraguay.png"
+  },
+  {
+    "name" : "Bolivia", 
+    "x" : 516,
+    "y" : 670,
+    "population" : 12087123,
+    "file" : ":/countries/bolivia.png"
+  },
+  {
+    "name" : "Peru", 
+    "x" : 456,
+    "y" : 620,
+    "population" : 33723123,
+    "file" : ":/countries/peru.png"
+  },
+  {
+    "name" : "Argentina", 
+    "x" : 493,
+    "y" : 728,
+    "population" : 45819452,
+    "file" : ":/countries/argentina.png"
+  }, 
+  {
+    "name" : "Chile", 
+    "x" : 485,
+    "y" : 710,
+    "population" : 19498273,
+    "file" : ":/countries/chile.png"
+  }
+]
+

@@ -12,6 +12,7 @@ public:
     MyText(const QString&);
     MyText(const QString&, const QPointF&);
 
+    void setText(const QString&);
     void setPosition(const QPointF&);
 
     void addPosition();

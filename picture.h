@@ -12,7 +12,7 @@
 
 class Picture {
 public:
-    Picture(const QString&, const QPointF&, int, int, double angle = 0);
+    Picture(const QString&, const QPointF&, int width = INT_MAX, int height = INT_MAX, double angle = 0);
     Picture(Picture*);
     ~Picture();
     Picture(const Picture&);
@@ -26,6 +26,7 @@ public:
     CustomItem* getItem();
     void setPixmap(const QPixmap&);
     void changePixmap(const QColor&);
+    void setSelection(bool);
     void setPixmapItemPosition(const QPointF&);
     void setZValue(double);
     void setRotation(double);

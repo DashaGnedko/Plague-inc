@@ -9,24 +9,18 @@
 
 class Progress {
 public:
-    Progress(MyText*, MyText*, Picture*, Picture*, MyRectangle*, MyRectangle*, MyRectangle*);
+    Progress(MyText*, Picture*, MyRectangle*);
 
-    MyText* getText();
     MyText* getProgress();
-    Picture* getPicture();
     Picture* getButton();
     MyRectangle* getBack();
-    MyRectangle* getProgressBar();
-    MyRectangle* getProgressBarInfected();
+
+    void setDna(int);
 
 private:
-    MyText* text = nullptr;
     MyText* progress = nullptr;
-    Picture* picture = nullptr;
     Picture* button = nullptr;
     MyRectangle* back = nullptr;
-    MyRectangle* progressBar = nullptr;
-    MyRectangle* progressBarInfected = nullptr;
 };
 
 #endif // PROGRESS_H

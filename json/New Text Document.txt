@@ -1,0 +1,11 @@
+[
+  {
+    "name" : "Greenland",
+    "x" : 603,
+    "y" : 57,
+    "population" : 331967364,
+    "file" : ":/countries/greenland.png",
+    "airports": 
+  }
+]
+

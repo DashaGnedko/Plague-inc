@@ -1,0 +1,17 @@
+[
+  {
+    "name" : "Greenland",
+    "x" : 603,
+    "y" : 57,
+    "population" : 56653,
+    "dna": 10,
+    "file" : ":/countries/greenland.png",
+    "airports" : [
+        {
+           "x": 675,
+           "y": 274
+	  }
+    ]
+  }
+]
+

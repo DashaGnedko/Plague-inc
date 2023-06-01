@@ -1,0 +1,158 @@
+[
+  {
+    "name" : "INSOMNIA",
+    "x" : 261,
+    "y" : 601,
+    "cost": 2,
+    "infectivity" : 1,
+    "severity" : 1,
+    "lethality": 0,
+    "description": "Inability to sleep makes people irritable and less productive.",
+    "file": ":/diseases/insomnia.png"
+  },
+ {
+    "name" : "PARANOIA",
+    "x" : 342,
+    "y" : 554,
+    "cost": 4,
+    "infectivity" : 0,
+    "severity" : 4,
+    "lethality": 0,
+    "description": "Irrational delusions and mental symptoms. Victims distrust of others makes them unlikely to seek treatment.",
+    "file": ":/diseases/insomnia.png"
+  },
+  {
+    "name" : "PARALYSIS",
+    "x" : 503,
+    "y" : 459,
+    "cost": 10,
+    "infectivity" : 1,
+    "severity" : 5,
+    "lethality": 1,
+    "description": "Pathogen destroys motor neurons to cause paralysis. Significantly harder to cure and can be lethal.",
+    "file": ":/diseases/paralysis.png"
+  },
+  {
+    "name" : "COMA",
+    "x" : 585,
+    "y" : 412,
+    "cost": 21,
+    "infectivity" : 0,
+    "severity" : 15,
+    "lethality": 2,
+    "description": "Neuropathic effects in the brain stem cause loss of consciousness and sometimes death. Harder to cure.",
+    "file": ":/diseases/coma.png"
+  },
+ {
+    "name" : "ABSCESSES",
+    "x" : 666,
+    "y" : 553,
+    "cost": 2,
+    "infectivity" : 4,
+    "severity" : 4,
+    "lethality": 0,
+    "description": "Pockets of infected flesh are painful and act as breeding grounds for the pathogen.",
+    "file": ":/diseases/worm.png"
+  },
+  {
+    "name" : "INFLAMMATION",
+    "x" : 423,
+    "y" : 507,
+    "cost": 5,
+    "infectivity" : 2,
+    "severity" : 2,
+    "lethality": 2,
+    "description": "Inflammation obstructs bodily processes. Swelling can obstruct breathing and be fatal.",
+    "file": ":/diseases/inflammation.png"
+  },
+  {
+    "name" : "CYSTS",
+    "x" : 585,
+    "y" : 602,
+    "cost": 2,
+    "infectivity" : 2,
+    "severity" : 2,
+    "lethality": 0,
+    "description": "Painful lumps containing pockets of the pathogen. Slight chance of bursting which can spread disease.",
+    "file": ":/diseases/worm.png"
+  },
+  {
+    "name" : "NAUSEA",
+    "x" : 260,
+    "y" : 134,
+    "cost": 2,
+    "infectivity" : 1,
+    "severity" : 1,
+    "lethality": 0,
+    "description": "Irritated stomach lining leads to discomfort. Slight chance of infection when kissing.",
+    "file": ":/diseases/nausea.png"
+  },
+ {
+    "name" : "COUGHING",
+    "x" : 585,
+    "y" : 132,
+    "cost": 4,
+    "infectivity" : 3,
+    "severity" : 1,
+    "lethality": 0,
+    "description": "Chance of infection by spreading pathogen into surroundings, especially in high density, urban areas.",
+    "file": ":/diseases/coughing.png"
+  },
+  {
+    "name" : "RASH",
+    "x" : 911,
+    "y" : 132,
+    "cost": 3,
+    "infectivity" : 2,
+    "severity" : 1,
+    "lethality": 0,
+    "description": "The skin becomes blistered and painful, slightly increasing infectivity.",
+    "file": ":/diseases/rash.png"
+  },
+  {
+    "name" : "HAEMOPHILIA",
+    "x" : 828,
+    "y" : 553,
+    "cost": 3,
+    "infectivity" : 4,
+    "severity" : 3,
+    "lethality": 0,
+    "description": "Immune system produces inhibitors that destroy factor VIII, preventing blood clotting. Infectivity increased.",
+    "file": ":/diseases/haemophilia.png"
+  },
+ {
+    "name" : "ANAEMIA",
+    "x" : 912,
+    "y" : 599,
+    "cost": 2,
+    "infectivity" : 1,
+    "severity" : 1,
+    "lethality": 0,
+    "description": "Decrease in red blood cells or haemoglobin in the blood can lead to hypoxia in the organs.",
+    "file": ":/diseases/anaemia.png"
+  },
+  {
+    "name" : "NECROSIS",
+    "x" : 749,
+    "y" : 507,
+    "cost": 27,
+    "infectivity" : 10,
+    "severity" : 20,
+    "lethality": 13,
+    "description": "Large swathes of infected tissue lose blood supply and become fatal sources of gangrene.",
+    "file": ":/diseases/necrosis.png"
+  },
+  {
+    "name" : "SKIN LESIONS",
+    "x" : 505,
+    "y" : 553,
+    "cost": 8,
+    "infectivity" : 11,
+    "severity" : 4,
+    "lethality": 0,
+    "description": "Breakdown in the epidermis causes large open wounds which significantly increase infectivity.",
+    "file": ":/diseases/skin-lesions.png"
+  }
+
+]
+

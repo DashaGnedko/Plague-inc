@@ -10,6 +10,13 @@ MyText::MyText(const QString& text_, const QPointF& position_) {
     position = position_;
 }
 
+void MyText::setText(const QString& text_) {
+    text = text_;
+    if (item != nullptr) {
+        item->setPlainText(text_);
+    }
+}
+
 void MyText::setPosition(const QPointF& position_) {
     position = position_;
     item->setPos(position);

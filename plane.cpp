@@ -16,15 +16,12 @@ Plane::Plane(Airport* start_, Airport* finish_, const QString& fileName, int wid
 
     double dx = finish.x() - start.x();
     double dy = finish.y() - start.y();
-    double angle = dy;
-    angle /= std::sqrt(dx * dx + dy * dy);
-    angle = acos(angle);
-    angle *= 360 /  acos(-1);
+    double angle = atan2(dy, dx) + acos(-1) / 2;
 //    if (dx > 0) {
 //        angle = 360 - angle;
 //    }
 
-    //if (angle != 0) qDebug() << "!!!! " << angle << " " << dx;
+    //if (angle != 0) qDebug() << "!!!! " << angle << " ";
 
 
     //exit(0);

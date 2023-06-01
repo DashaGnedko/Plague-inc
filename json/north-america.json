@@ -1,0 +1,61 @@
+[
+  {
+    "name" : "USA",
+    "x" : 233,
+    "y" : 330,
+    "population" : 331967364,
+    "file" : ":/countries/usa.png",
+    "dna": 6,
+    "airports" : [
+        {
+           "x": 374,
+           "y": 410
+	  },
+        {
+           "x": 468,
+           "y": 415
+	  }
+    ]
+  },
+  {
+    "name" : "Mexico",
+    "x" : 272,
+    "y" : 443,
+    "population" : 126745829,
+    "dna": 7,
+    "file" : ":/countries/mexico.png",
+    "airports" : [
+        {
+           "x": 444,
+           "y": 567
+	  },
+        {
+           "x": 356,
+           "y": 486
+	  },
+        {
+           "x": 328,
+           "y": 483
+	  }
+    ]
+  },
+  {
+    "name" : "Canada",
+    "x" : 140,
+    "y" : 78,
+    "population" : 38258104,
+    "dna": 5,
+    "file" : ":/countries/canada.png",
+    "airports" : [
+        {
+           "x": 562,
+           "y": 300
+	  },
+        {
+           "x": 463,
+           "y": 344
+	  }
+    ]
+  }
+]
+

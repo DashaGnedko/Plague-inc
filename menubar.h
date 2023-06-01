@@ -8,23 +8,27 @@
 
 class MenuBar {
 public:
-    MenuBar(MyText*, MyRectangle*);
+    MenuBar(MyText*, int, int, const QPointF&, const QPointF&, QColor, QBrush);
 
     void setText(MyText*);
     void setCurrentLevel(int);
+    void setPrediction(int);
 
     MyText* getName();
     int getCurrentLevel();
     MyRectangle* getProgressBar();
-    MyRectangle* getProgressBarInfected();
     MyRectangle* getProgressBarShow();
 
 private:
     MyText* name = nullptr;
     int currentLevel;
+    int maxLevel;
+    QPointF begin;
+    QPointF end;
     MyRectangle* progressBar = nullptr;
-    MyRectangle* progressBarInfected = nullptr;
     MyRectangle* progressBarShow = nullptr;
+    QColor progressColor;
+    QBrush progressBrush;
 };
 
 #endif // MENUBAR_H

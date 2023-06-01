@@ -5,39 +5,12 @@ View::View(Controller* controller_, QWidget *parent) : QGraphicsScene(parent) {
     view = new QGraphicsView(this);
     controller = controller_;
 
-//    QPixmap waterBackground("D:/Code QT/Plague-inc/water-background.png");
-//    waterBackground = waterBackground.scaled(parent->size(), Qt::IgnoreAspectRatio);
-//    QPalette palette;
-//    palette.setBrush(QPalette::Window, waterBackground);
-//    view->setPalette(palette);
-
-    view->setStyleSheet("background-image: url(D:/Code QT/Plague-inc/water-background-copy.png);"
+    view->setStyleSheet("background-image: url(D:/Code QT/Plague-inc/main-background.png);"
                           "background-repeat: no-repeat;"
                           "background-position: center;"
                           "background-size: cover;");
-
-
-    //view->setStyleSheet("background-image:url(D:/Code QT/Plague-inc/water-background.png)");
-
-//    QPalette palette;
-//    palette.setColor(QPalette::Base, QColor(148, 189, 229));
-//    view->setAutoFillBackground(true);
-//    view->setPalette(palette);
-
-    //qDebug() << parent->width() << " " << parent->height();
-    //view->resize(parent->width() - 1, parent->height() - 1);
+    view->setContentsMargins(QMargins(0, 0, 0, 0));
     this->setSceneRect(0, 0, parent->width() - 2, parent->height() - 2);
-
-
-
-    //view->setDragMode(QGraphicsView::NoDrag);
-    //view->setFocusPolicy(Qt::NoFocus);
-    //view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-
-    //Country jeju("Jeju", QPointF(300, 300), 2345, "D:/Code QT/Plague-inc/jeju-island.png", 200, 200);
-    //qDebug() << jeju.getPosition();
-      //  this->addItem(jeju.getPicture()->getItem());
-
 
 
     Country* country = nullptr;
@@ -45,79 +18,71 @@ View::View(Controller* controller_, QWidget *parent) : QGraphicsScene(parent) {
         for (int j = 0; j < controller->getIndex(i)->size(); j++) {
             country = controller->getIndex(i)->getIndex(j);
             this->addItem(country->getPicture()->getItem());
-//            std::vector<Airport> airports = country->getAirport();
-//            for (const Airport& airport: airports) {
-//               for (const Plane& plane: airport.getPlane()) {
-//                   this->addItem(plane.getPicture()->getItem());
-//               }
-//            }
         }
     }
-
-//    QPixmap pixmap;
-//    //QBitmap bitmap;
-//    QGraphicsPixmapItem* pixmapItem = nullptr;
-//    QPainterPath path;
-
-//    pixmap.load("D:/Code QT/Plague-inc/plane.png");
-//    pixmap = pixmap.scaled(100, 100);
-//    pixmapItem = new QGraphicsPixmapItem(pixmap);
-//    pixmapItem->setPos(QPointF(100, 100));
-
-//    Picture picture("D:/Code QT/Plague-inc/plane.png", QPointF(0, 0), 100, 100);
-//    this->addItem(picture.getItem());
-
-    //Country jeju("Jeju", QPointF(300, 300), 2345, "D:/Code QT/Plague-inc/jeju-island.png", 200, 200);
-    //this->addItem(jeju.getPicture()->getItem());
 
     for (int i = 0; i < controller->size(); i++) {
         for (int j = 0; j < controller->getIndex(i)->size(); j++) {
             country = controller->getIndex(i)->getIndex(j);
-            //this->addItem(country->getPicture()->getItem());
             std::vector<Airport*> airports = country->getAirport();
             for (const Airport* airport: airports) {
                 this->addItem(airport->getPicture()->getItem());
-                //qDebug() << airport.getPlane().size();
-
             }
         }
     }
 
-    std::vector<Plane*> planes = controller->getPlanes();
-    for (int i = 0; i < static_cast<int>(planes.size()); i++) {
-        this->addItem(planes[i]->getPicture()->getItem());
-    }
+//    std::vector<Plane*> planes = controller->getPlanes();
+//    for (int i = 0; i < static_cast<int>(planes.size()); i++) {
+//        this->addItem(planes[i]->getPicture()->getItem());
+//    }
 
     InfoBar* infobar = controller->getInfobar();
-    infobar->getBackBar()->item = this->addRect(infobar->getBackBar()->rect, infobar->getBackBar()->pen, infobar->getBackBar()->brush);
 
-    this->addItem(infobar->getBack()->getItem());
-    infobar->getName()->item = this->addText(infobar->getName()->text, QFont("Arial", 14, 3));
+    infobar->getName()->item = this->addText(infobar->getName()->text, QFont("Arial", 15, QFont::ExtraBold));
+    infobar->getName()->addPosition();
     infobar->getName()->item->setDefaultTextColor(Qt::white);
-    infobar->getName()->setPosition(infobar->getName()->position);
 
-    infobar->getInfectedTitle()->item = this->addText(infobar->getInfectedTitle()->text);
-    infobar->getInfectedTitle()->item->setDefaultTextColor(Qt::white);
-    infobar->getInfectedTitle()->setPosition(infobar->getInfectedTitle()->position);
+    infobar->getInfectedNumber()->item = this->addText(infobar->getInfectedNumber()->text, QFont("Arial", 11, QFont::ExtraBold));
+    infobar->getInfectedNumber()->addPosition();
+    infobar->getInfectedNumber()->item->setDefaultTextColor(Qt::white);
 
-    infobar->getDeadTitle()->item = this->addText(infobar->getDeadTitle()->text);
-    infobar->getDeadTitle()->item->setDefaultTextColor(Qt::white);
-    infobar->getDeadTitle()->setPosition(infobar->getDeadTitle()->position);
+    infobar->getDeadNumber()->item = this->addText(infobar->getDeadNumber()->text, QFont("Arial", 11, QFont::ExtraBold));
+    infobar->getDeadNumber()->addPosition();
+    infobar->getDeadNumber()->item->setDefaultTextColor(Qt::white);
 
-    // ----
+//    infobar->getInfectedTitle()->item = this->addText(infobar->getInfectedTitle()->text);
+//    infobar->getInfectedTitle()->item->setDefaultTextColor(Qt::white);
+//    infobar->getInfectedTitle()->setPosition(infobar->getInfectedTitle()->position);
 
-    this->addItem(infobar->getInfected()->getItem());
-    this->addItem(infobar->getDead()->getItem());
+//    infobar->getDeadTitle()->item = this->addText(infobar->getDeadTitle()->text);
+//    infobar->getDeadTitle()->item->setDefaultTextColor(Qt::white);
+//    infobar->getDeadTitle()->setPosition(infobar->getDeadTitle()->position);
 
-    infobar->getProgressBar()->item = this->addRect(infobar->getProgressBar()->rect, infobar->getProgressBar()->pen, infobar->getProgressBar()->brush);
-    infobar->getProgressBarInfected()->item = this->addRect(infobar->getProgressBarInfected()->rect, infobar->getProgressBarInfected()->pen, infobar->getProgressBarInfected()->brush);
+//    // ----
+
+//    this->addItem(infobar->getInfected()->getItem());
+//    this->addItem(infobar->getDead()->getItem());
+
+//    infobar->getProgressBar()->item = this->addRect(infobar->getProgressBar()->rect, infobar->getProgressBar()->pen, infobar->getProgressBar()->brush);
+//    infobar->getProgressBarInfected()->item = this->addRect(infobar->getProgressBarInfected()->rect, infobar->getProgressBarInfected()->pen, infobar->getProgressBarInfected()->brush);
 
 
     // --------------------------------------
 
     Progress* progress = controller->getProgress();
-    progress->getBack()->item = this->addRect(progress->getBack()->rect, progress->getBack()->pen, progress->getBack()->brush);
+    //progress->getBack()->item = this->addRect(progress->getBack()->rect, progress->getBack()->pen, progress->getBack()->brush);
     this->addItem(progress->getButton()->getItem());
+    progress->getProgress()->item = this->addText(progress->getProgress()->text, QFont("Arial", 15, QFont::ExtraBold));
+    progress->getProgress()->addPosition();
+    progress->getProgress()->item->setDefaultTextColor(Qt::white);
+
+    // --------------------------------------
+
+
+    MyText* cureProgress = controller->getCureProgress();
+    cureProgress->item = this->addText(cureProgress->text, QFont("Arial", 15, QFont::ExtraBold));
+    cureProgress->addPosition();
+    cureProgress->item->setDefaultTextColor(Qt::white);
 }
 
 QGraphicsView* View::getView() {
@@ -134,10 +99,14 @@ void View::update(Rebuild& updates) {
                                         circle->position.y() - circle->transparent / 2,
                                         circle->transparent, circle->transparent,
                                         QColor(160, 0, 0, 50), QBrush(QColor(160, 0, 0, 50)));
+        circle->item->clearFocus();
+        circle->item->setAcceptedMouseButtons(Qt::NoButton);
         circle->item = this->addEllipse(circle->position.x() - circle->radius / 2,
                                         circle->position.y() - circle->radius / 2,
                                         circle->radius, circle->radius, QColor(160, 0, 0),
                                         QBrush(QColor(160, 0, 0)));
+        circle->item->clearFocus();
+        circle->item->setAcceptedMouseButtons(Qt::NoButton);
     }
     //qDebug() << updates.addPlane.size();
     for (Plane* plane: updates.addPlane) {
@@ -154,17 +123,16 @@ void View::mousePressEvent(QGraphicsSceneMouseEvent* event) {
                     emit openMenu();
                     return;
                 }
-//                QPointF mousePos = event->pos();
-                //qDebug() << "Левая кнопка мыши нажата.";
-                //QGraphicsItem* ptr = this->itemAt(event->scenePos(), QTransform());
-                //qDebug() << "Позиция мыши:" << event->scenePos() << " " << (&ptr == nullptr) << " " << ptr->mapFromScene(event->scenePos());
-//                //exit(0);
-                //update();
+
+                controller->updateSelection(ptr);
+                view->update();
+                //qDebug() << "Позиция мыши:" << event->scenePos() << " " << !(ptr == nullptr);
             }
             else if (event->button() == Qt::RightButton)
             {
+        QGraphicsItem* ptr = this->itemAt(event->scenePos(), QTransform());
 //                qDebug() << "Правая кнопка мыши нажата.";
-                qDebug() << "Позиция мыши:" << event->scenePos() << " " << event->pos();
+                qDebug() << "Позиция мыши:" << event->scenePos() << " " << !(ptr == nullptr);
             }
 
             //QGraphicsScene::mousePressEvent(event);

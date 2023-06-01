@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+ <qresource>
+     <file>icons/plane.png</file>
+     <file>icons/airport.png</file>
+     <file>icons/airport-infected.png</file>
+ </qresource>
+ </RCC>

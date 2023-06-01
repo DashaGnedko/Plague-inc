@@ -1,0 +1,17 @@
+<!DOCTYPE RCC><RCC version="1.0">
+ <qresource>
+     <file>diseases/nausea.png</file>
+     <file>diseases/insomnia.png</file>
+     <file>diseases/paralysis.png</file>
+     <file>diseases/coma.png</file>
+     <file>diseases/abscesses.png</file>
+     <file>diseases/inflammation.png</file>
+     <file>diseases/worm.png</file>
+     <file>diseases/coughing.png</file>
+     <file>diseases/rash.png</file>
+     <file>diseases/haemophilia.png</file>
+     <file>diseases/anaemia.png</file>
+     <file>diseases/necrosis.png</file>
+     <file>diseases/skin-lesions.png</file>
+ </qresource>
+ </RCC>

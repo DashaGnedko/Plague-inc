@@ -3,10 +3,12 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
 
+    //resize(1000, 1000);
+
     showFullScreen();
 
     controller = new Controller();
-    controllerMenu = new ControllerMenu();
+    controllerMenu = new ControllerMenu(controller);
 
     stack = new QStackedWidget(this);
 
@@ -61,5 +63,6 @@ void MainWindow::openMenuWindow() {
     stack->addWidget(viewMenu->getView());
     stack->setCurrentWidget(viewMenu->getView());
     viewMenu->getView()->setEnabled(true);
+    controllerMenu->recalculateDna();
     //qDebug() << "????? " << (stack->currentWidget() == view->getView());
 }

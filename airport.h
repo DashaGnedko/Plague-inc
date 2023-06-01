@@ -36,7 +36,7 @@ public:
 
 //    QPointF getCenter();
 
-    Airport* askForPlane(const std::vector<Airport*>&);
+    //Airport* askForPlane(const std::vector<Airport*>&);
 
 private:
     const int neededNumberOfInfected = 5;

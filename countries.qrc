@@ -1,0 +1,17 @@
+<!DOCTYPE RCC><RCC version="1.0">
+ <qresource>
+     <file>countries/argentina.png</file>
+     <file>countries/brazil.png</file>
+     <file>countries/bolivia.png</file>
+     <file>countries/chile.png</file>
+     <file>countries/columbia.png</file>
+     <file>countries/ecuador.png</file>
+     <file>countries/paraguay.png</file>
+     <file>countries/peru.png</file>
+     <file>countries/venezuela.png</file>
+     <file>countries/usa.png</file>
+     <file>countries/mexico.png</file>
+     <file>countries/canada.png</file>
+     <file>countries/greenland.png</file>
+ </qresource>
+ </RCC>

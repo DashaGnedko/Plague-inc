@@ -11,47 +11,32 @@
 
 class InfoBar {
 public:
-    InfoBar(MyText* name, MyText* infectedTitle, MyText* deadTitle, MyText* infectedNumber, MyText* deadNumber, Picture* back, Picture* infected, Picture* dead, MyRectangle* backBar, MyRectangle* progressBar, MyRectangle* progressBarInfected);
+    InfoBar(MyText* name, MyText* infectedNumber, MyText* deadNumber, Picture* world, MyRectangle* infectedBar, MyRectangle* deadBar);
     ~InfoBar();
     //InfoBar(const InfoBar&);
     //InfoBar operator[](const InfoBar&);
 
     MyText* getName();
-    MyText* getInfectedTitle();
-    MyText* getDeadTitle();
     MyText* getInfectedNumber();
     MyText* getDeadNumber();
-    Picture* getBack();
-    Picture* getInfected();
-    Picture* getDead();
-    MyRectangle* getBackBar();
-    MyRectangle* getProgressBar();
-    MyRectangle* getProgressBarInfected();
+    Picture* getWorld();
+    MyRectangle* getInfectedBar();
+    MyRectangle* getdeadBar();
 
-    void setName(MyText*);
-    void setInfectedTitle(MyText*);
-    void setDeadTitle(MyText*);
-    void setInfectedNumber(MyText*);
-    void setDeadNumber(MyText*);
-    void setBack(Picture*);
-    void setInfected(Picture*);
-    void setDead(Picture*);
-    void setBackBar(MyRectangle*);
-    void setProgressBar(MyRectangle*);
-    void setProgressBarInfected(MyRectangle*);
+    void setName(const QString&);
+    void setInfectedNumber(int);
+    void setDeadNumber(int);
+    //void setWorld(Picture*);
+    //void setInfectedBar(MyRectangle*);
+    //void setdeadBar(MyRectangle*);
 
 private:
     MyText* name = nullptr;
-    MyText* infectedTitle = nullptr;
-    MyText* deadTitle = nullptr;
     MyText* infectedNumber = nullptr;
     MyText* deadNumber = nullptr;
-    Picture* back = nullptr;
-    Picture* infected = nullptr;
-    Picture* dead = nullptr;
-    MyRectangle* backBar = nullptr;
-    MyRectangle* progressBar = nullptr;
-    MyRectangle* progressBarInfected = nullptr;
+    Picture* world = nullptr;
+    MyRectangle* infectedBar = nullptr;
+    MyRectangle* deadBar = nullptr;
 };
 
 #endif // INFOBAR_H

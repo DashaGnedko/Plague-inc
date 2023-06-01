@@ -1,27 +1,21 @@
 #include "infobar.h"
 
-InfoBar::InfoBar(MyText* name_, MyText* infectedTitle_, MyText* deadTitle_, MyText* infectedNumber_, MyText* deadNumber_, Picture* back_, Picture* infected_, Picture* dead_, MyRectangle* backBar_, MyRectangle* progressBar_, MyRectangle* progressBarInfected_) {
+InfoBar::InfoBar(MyText* name_, MyText* infectedNumber_, MyText* deadNumber_, Picture* world_, MyRectangle* infectedBar_, MyRectangle* deadBar_) {
     name = name_;
-    infectedTitle = infectedTitle_;
-    deadTitle = deadTitle_;
     infectedNumber = infectedNumber_;
     deadNumber = deadNumber_;
-    back = back_;
-    infected = infected_;
-    dead = dead_;
-    backBar = backBar_;
-    progressBar = progressBar_;
-    progressBarInfected = progressBarInfected_;
+    world = world_;
+    infectedBar = infectedBar_;
+    deadBar = deadBar_;
 }
 
 InfoBar::~InfoBar() {
     delete name;
-    delete back;
-    delete infected;
-    delete dead;
-    delete backBar;
-    delete progressBar;
-    delete progressBarInfected;
+    delete infectedNumber;
+    delete deadNumber;
+    delete world;
+    delete infectedBar;
+    delete deadBar;
 }
 
 //InfoBar::InfoBar(const InfoBar& infoBar) {
@@ -52,14 +46,6 @@ MyText* InfoBar::getName() {
     return name;
 }
 
-MyText* InfoBar::getInfectedTitle() {
-    return infectedTitle;
-}
-
-MyText* InfoBar::getDeadTitle() {
-    return deadTitle;
-}
-
 MyText* InfoBar::getInfectedNumber() {
     return infectedNumber;
 }
@@ -68,70 +54,30 @@ MyText* InfoBar::getDeadNumber() {
     return deadNumber;
 }
 
-Picture* InfoBar::getBack() {
-    return back;
+Picture* InfoBar::getWorld() {
+    return world;
 }
 
-Picture* InfoBar::getInfected() {
-    return infected;
+MyRectangle* InfoBar::getInfectedBar() {
+    return infectedBar;
 }
 
-Picture* InfoBar::getDead() {
-    return dead;
+MyRectangle* InfoBar::getdeadBar() {
+    return deadBar;
 }
 
-MyRectangle* InfoBar::getBackBar() {
-    return backBar;
+void InfoBar::setName(const QString& name_) {
+    name->setText(name_);
 }
 
-MyRectangle* InfoBar::getProgressBar() {
-    return progressBar;
+void InfoBar::setInfectedNumber(int number) {
+    infectedNumber->setText(QString::number(number));
 }
 
-MyRectangle* InfoBar::getProgressBarInfected() {
-    return progressBarInfected;
+void InfoBar::setDeadNumber(int number) {
+    deadNumber->setText(QString::number(number));
 }
 
-void InfoBar::setName(MyText* name_) {
-    name = name_;
-}
-
-void InfoBar::setInfectedTitle(MyText* infectedTitle_) {
-    infectedTitle = infectedTitle_;
-}
-
-void InfoBar::setDeadTitle(MyText* deadTitle_) {
-    deadTitle = deadTitle_;
-}
-
-void InfoBar::setInfectedNumber(MyText* infectedNumber_) {
-    infectedNumber = infectedNumber_;
-}
-
-void InfoBar::setDeadNumber(MyText* deadNumber_) {
-    deadNumber = deadNumber_;
-}
-
-void InfoBar::setBack(Picture* back_) {
-    back = back_;
-}
-
-void InfoBar::setInfected(Picture* infected_) {
-    infected = infected_;
-}
-
-void InfoBar::setDead(Picture* dead_) {
-    dead = dead_;
-}
-
-void InfoBar::setBackBar(MyRectangle* backBar_) {
-    backBar = backBar_;
-}
-
-void InfoBar::setProgressBar(MyRectangle* progressBar_) {
-    progressBar = progressBar_;
-}
-
-void InfoBar::setProgressBarInfected(MyRectangle* progressBarInfected_) {
-    progressBarInfected = progressBarInfected_;
-}
+//void InfoBar::setWorld(Picture*);
+//void InfoBar::setInfectedBar(MyRectangle*);
+//void InfoBar::setdeadBar(MyRectangle*);

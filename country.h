@@ -12,10 +12,11 @@
 #include "circle.h"
 #include "rebuild.h"
 #include "airport.h"
+#include "plague.h"
 
 class Country {
 public:
-    Country(const QString&, const QPointF&, int, const QString&, int, int);
+    Country(Plague*, const QString&, const QPointF&, int, int, int, const QString&, int, int);
     ~Country();
     Country(const Country&);
     Country& operator=(const Country&);
@@ -30,9 +31,14 @@ public:
     std::vector<Airport*> getAirport();
 
     void addAirport(Airport*);
+    Airport* checkAirport();
 
+    void generateInfection(QPointF);
     void startInfected(const QPointF&);
     Rebuild update(int);
+
+    void recalculatePopulation(int, int, int);
+    void endInfection();
 
 private:
     int timer = 0;
@@ -41,12 +47,17 @@ private:
     int population;
     int infected;
     int dead;
+    int frequency;
+    int lastAirport;
+    int updateTimer;
+    int addDna;
     std::optional<QPointF> infectionPosition;
     std::optional<double> infectionSpeed;
     Picture* picture = nullptr;
     std::vector<Circle*> infectedZone;
     std::vector<Airport*> airports;
-
+    std::vector<Circle*> lastVisited;
+    Plague* plague;
 };
 
 #endif // COUNTRY_H
